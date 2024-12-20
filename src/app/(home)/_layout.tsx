@@ -1,7 +1,7 @@
 import { Slot, Stack } from "expo-router";
 import { useEffect } from "react";
 import { StreamChat } from "stream-chat";
-import { Chat, OverlayProvider } from "stream-chat-expo";
+import { Chat, ChatProvider, OverlayProvider } from "stream-chat-expo";
 
 const client = StreamChat.getInstance("8qn2bupavu9s");
 
@@ -29,9 +29,11 @@ export default function HomeLayout(){
   return (
     <OverlayProvider>
       <Chat client={client}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <ChatProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </ChatProvider>
       </Chat>
     </OverlayProvider>
   );
